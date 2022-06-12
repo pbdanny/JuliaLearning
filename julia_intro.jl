@@ -129,9 +129,13 @@ sayhi("Gorge")
 sayhi(name) = println("Hi hello $name")
 sayhi("Gorge")
 
-# lambda
+# lambda (I)
 sayhi3 = name -> println("Yo $name")
 f3 = x -> x + x^2
+
+# lambda (II)
+sayhi4(name) = println("Yo $name")
+f4(x) = x + x^2
 
 # Duck typing
 # Julia will try work with input of function when the operation possible to infer
@@ -159,5 +163,40 @@ A = [i + 3*j for j in 0:2, i in 1:3]
 f3(A)
 # Broadcasting version
 f3.(A)
-
 f3.(v)
+
+# Package management
+# REPL `]`
+using Pkg
+Pkg.add("Example")
+using Example
+hello("Me")
+
+# Plotting
+x = -3:0.1:3
+f(x) = x^2
+y = f.(x)
+
+plot(x, y , label="line")
+# use mutate ! to add plot on top
+scatter!(x, y, label="Points")
+
+# Multiple dispatch
+# show multiple dispatch variants
+methods(+)
+# show which method using
+@which 3+3
+@which 3.0+3.0
+@which 3.0+3
+
+# Extend method
+import Base: +
+@which "hello" + "hello"
++(x::String, y::String) = string(x, y)
+"hello" + "worl"
+@which "hello" + "hello"
+
+foo(x, y) = println("duck type fn")
+foo(x::Int, y::Float64) = println("One Int, One float")
+foo(x::Float64, y::Float64) = println("Both are Float")
+foo(x::Int, y::Int) = println("Both are Int")
