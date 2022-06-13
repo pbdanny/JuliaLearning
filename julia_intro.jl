@@ -200,3 +200,47 @@ foo(x, y) = println("duck type fn")
 foo(x::Int, y::Float64) = println("One Int, One float")
 foo(x::Float64, y::Float64) = println("Both are Float")
 foo(x::Int, y::Int) = println("Both are Int")
+
+# Struct 
+struct MyObj
+    Field1
+    Field2
+end
+
+myob = MyObj("Hello", "world")
+myob.Field1
+myob.Field2
+
+myob.Field1 = "Cast"
+
+# mutable struct
+mutable struct Person
+    name::String
+    age::Float64
+end
+logan = Person("Logan", 44)
+logan.age
+logan.name
+logan.age = 45
+logan.age
+logan.age = "12"
+
+# Default attribute, with new contstructor
+mutable struct Person2
+    name::String
+    age::Float64
+    isActive::Bool
+
+    function Person2(name, age)
+        new(name, age, true)
+    end
+end
+newperson = Person2("Logan", 27)
+
+function birthday(person::Person2)
+    person.age +=1
+end
+
+birthday(newperson)
+birthday(newperson)
+newperson.age
