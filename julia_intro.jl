@@ -244,3 +244,74 @@ end
 birthday(newperson)
 birthday(newperson)
 newperson.age
+
+# Algebra
+A = rand(1:4, 3, 3)
+A
+# reference assign
+B = A
+# real copy
+C = copy(A)
+[B C]
+A[1] = 22
+[B C]
+[B
+C]
+x = ones(3)
+b = A*x
+Asym = A + A'
+Apd = A'A
+# solve liner system
+A\b
+Atall = A[:,1:2]
+display(Atall)
+# A tall \ least sqr solution
+Atall\b
+A = randn(3,3)
+[A[:,1] A[:,1]]\b
+
+# A short \ norm
+Ashort = A[1:2, :]
+display(Ashort)
+Ashort\b[1:2]
+
+# Factorization
+using LinearAlgebra
+
+A = randn(3,3)
+l, u, p = lu(A)
+l
+u
+p
+A
+display(norm(l*u - A))
+display(norm(l*u - A[p,:]))
+
+l, u, p = lu(A, Val(false))
+norm(l*u - A)
+
+# use LU solve linear Algebra
+x = ones(3)
+b = A*x
+# PA = LU
+# A = P'LU
+# P'LUx = b
+# LUx = Pb
+# Ux = L\Pb
+# x = U\L\Pb
+u\l\p*B
+Alu\b
+Aqr = qr(A)
+Aqr.Q
+Aqr.R
+Aqr = qr(A, Val{true})
+
+# Eigendecomposition, SVD
+AsymEig = eigen(A)
+Asvd = svd(A)
+
+# Special matrix
+A = rand(3,3)
+Diagonal(diag(A))
+LowerTriangular(A)
+Symmetric(A)
