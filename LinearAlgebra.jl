@@ -3,11 +3,15 @@ using SparseArrays
 using Images
 
 A = randn(5, 5)
-# Symetric metrix
-C = A'*A
+# Create symetric positive definite matrix
+C = A*A'
 isposdef(C)
 @show C[1,2] == C[2,1]
 C[1,2] == C[2,1]
+# accesing matrix , migth use 1-d index (column wise)
+# [2,1] = 5 + 1
+println("Julia index is 1-based")
+@show C[2,1] == C[6]
 
 # Solve linear equation Ax = b
 b = rand(Int8, 5)
@@ -37,7 +41,7 @@ norm(luA.L*luA.U - luA.P*A) # should close to zero
 qrA = qr(A)
 norm(qrA.Q*qrA.R - A)
 # Q is othogonal, transpose = invert
-qrA.Q' == inv(qrA.Q) 
+qrA.Q' == inv(qrA.Q)
 
 # Cholesky Factorization
 # L*L' = A
