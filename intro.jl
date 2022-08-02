@@ -137,7 +137,7 @@ print("2nd elements of b is $(b[2])")
 using Printf
 @printf("%10.2f", a)
 
-# Forloop 
+# Forloop
 for i in 1:3
     println("Line number $(i)")
 end
