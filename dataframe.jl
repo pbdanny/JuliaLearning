@@ -8,3 +8,30 @@ using HypothesisTests
 
 ds = Parquet2.Dataset("/home/danny/Downloads/puzzles.parquet")
 df = DataFrame(ds)
+
+select(df, "Themes")
+select(df, :Themes)
+@select(df, :Themes)
+
+select(df, "Themes", 4 , [:Rating, :Moves])
+@select(df, :Themes, :NbPlays)
+@select(df, $"Themes", $["Rating", "Moves"])
+
+names(df)
+
+names(select(df, Not(:Moves)))
+names(select(df, Between(:Popularity, :OpeningFamily)))
+
+names(df)
+select(df, r"^[M|T|P]")
+
+select(df, r"s$")
+select(df, Cols(endswith("s")))
+
+select(df, Not(:X))x
+select(df, Not(Cols(==(:X))))
+
+select(df, :Themes => :theme)
+
+select(df, Cols(endswith("s")) .=> identity .=> lowercase)
+transform(df, Cols(endswith("s")) .=> identity .=> lowercase)
