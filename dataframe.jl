@@ -9,10 +9,12 @@ using HypothesisTests
 ds = Parquet2.Dataset("/home/danny/Downloads/puzzles.parquet")
 df = DataFrame(ds)
 
+names(df)
 select(df, "Themes")
 select(df, :Themes)
 @select(df, :Themes)
 
+# Mixed column select symbol, index num
 select(df, "Themes", 4 , [:Rating, :Moves])
 @select(df, :Themes, :NbPlays)
 @select(df, $"Themes", $["Rating", "Moves"])
@@ -28,8 +30,9 @@ select(df, r"^[M|T|P]")
 select(df, r"s$")
 select(df, Cols(endswith("s")))
 
-select(df, Not(:X))x
-select(df, Not(Cols(==(:X))))
+select(df, Not(:Moves))
+
+select(df, Not(Cols(==(:Rating))))
 
 select(df, :Themes => :theme)
 
