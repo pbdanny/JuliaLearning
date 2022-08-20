@@ -38,3 +38,5 @@ select(df, :Themes => :theme)
 
 select(df, Cols(endswith("s")) .=> identity .=> lowercase)
 transform(df, Cols(endswith("s")) .=> identity .=> lowercase)
+
+using Makie
