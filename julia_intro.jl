@@ -26,7 +26,8 @@ convert(Int64, "1")
 
 typeof('a')
 typeof("a")
-typeof('abc')
+# string, us " only
+typeof("abc")
 
 println("Hello i have $α")
 println("Hello i have more then total is $(α + β)")
@@ -121,7 +122,7 @@ x > y ? println("x > y") : println("x <= y")
 
 # Function
 function sayhi(name)
-    println("Hi $name")    
+    println("Hi $name")
 end
 sayhi("Gorge")
 
@@ -201,7 +202,7 @@ foo(x::Int, y::Float64) = println("One Int, One float")
 foo(x::Float64, y::Float64) = println("Both are Float")
 foo(x::Int, y::Int) = println("Both are Int")
 
-# Struct 
+# Struct
 struct MyObj
     Field1
     Field2
