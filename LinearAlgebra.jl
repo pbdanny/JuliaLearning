@@ -42,3 +42,45 @@ qrA.Q' == inv(qrA.Q)
 # Cholesky Factorization
 # L*L' = A
 cholA = cholesky(C)
+cholA.L
+cholA.Upper
+
+# Auto select factoring methods, best fits
+factorize(A)
+
+# Diagonal 
+diagm([1,2,3])
+Diagonal([1,2,3]) # memory efficient version
+I(3)
+
+# I could use as varible
+A+10I
+
+# Sparse matrix
+S = sprand(5,5,2/5)
+S.rowval
+S.n
+
+#= 
+Images
+=#
+X1 = load("./MIT/philip.jpg")
+typeof(X1)
+size(X1)
+X1[1,1] # pixel at 1,1
+
+Xgray = Gray.(X1)
+# extract RGB
+R = map(i->X1[i].r, 1:length(X1))
+R = Float64.(reshape(R, size(X1)...))
+G = map(i->X1[i].g, 1:length(X1))
+G = Float64.(reshape(G, size(X1)...))
+B = map(i->X1[i].b, 1:length(X1))
+B = Float64.(reshape(B, size(X1)...))
+
+# Get RGB - B part
+Z = zeros(size(R)...)
+RGB.(Z,Z,B)
+
+# Gray value
+Xgrayval = Float64.(Xgray)
